@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Inici de l'Aplicació de Biblioteca</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Benvingut a l'Aplicació de Biblioteca</h1>
-    <a href="login.php">Iniciar sessió</a> | <a href="registre.php">Registrar-se</a>
+<body class="auth-page">
+
+    <div class="auth-container">
+        <h1>Biblioteca ITIC</h1>
+        <p>Benvingut a l'aplicació de gestió de la biblioteca. Si us plau, identifica't per continuar.</p>
+        
+        <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px;">
+            <a href="login.php" style="display: block; background-color: var(--primary-color); color: white; padding: 12px; border-radius: 4px; text-decoration: none;">Iniciar sessió</a>
+            <a href="registre.php" style="display: block; background-color: white; color: var(--primary-color); padding: 12px; border: 1px solid var(--primary-color); border-radius: 4px; text-decoration: none;">Registrar-se</a>
+        </div>
+    </div>
+
 </body>
 </html>

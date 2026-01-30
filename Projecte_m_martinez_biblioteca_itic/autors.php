@@ -70,6 +70,7 @@ while ($fila = mysqli_fetch_assoc($result)) {
                 <input type='hidden' name='id' value='{$fila['id']}'>
                 <button>Eliminar</button>
             </form>
+            <br><br>
             <form method='POST' style='display:inline;'>
                 <input type='hidden' name='accio' value='actualitzar'>
                 <input type='hidden' name='id' value='{$fila['id']}'>

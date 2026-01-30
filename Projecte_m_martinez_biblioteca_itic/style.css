@@ -1,0 +1,82 @@
+/* Estil "HTML millorat" molt bàsic */
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    color: #111;
+    max-width: 800px; /* Un límit d'amplada per llegibilitat, però sense centrat forçat */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* Enllaços clàssics però amb color consistent */
+a {
+    color: #0044cc;
+    text-decoration: underline;
+}
+a:hover {
+    text-decoration: none;
+}
+
+/* Encapçalaments nets */
+h1, h2, h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+/* Formularis bàsics */
+input, select, textarea {
+    font-size: 1rem;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    font-size: 1rem;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+/* Taules simples amb vores */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+th, td {
+    border: 1px solid #999;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #eee;
+}
+
+/* Navegació bàsica */
+nav a {
+    margin-right: 15px;
+}
+
+/* Utilitats per mantenir l'estructura sense estil visual "de disseny" */
+.auth-container, .card, header {
+    /* Eliminem qualsevol estil de "capsa" o ombra */
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Petita separació per al header */
+header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}

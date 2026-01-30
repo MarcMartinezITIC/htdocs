@@ -37,10 +37,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-<form method="POST">
-    Nom: <input type="text" name="nom" required><br>
-    Email: <input type="email" name="email" required><br>
-    Contrasenya: <input type="password" name="contrasenya" required><br>
-    Confirmar Contrasenya: <input type="password" name="confirmar_contrasenya" required><br>
-    <button type="submit">Registrar-se</button>
-</form>
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registre - Biblioteca</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-page">
+
+    <div class="auth-container">
+        <h1>Registrar-se</h1>
+        <form method="POST" style="box-shadow: none; border: none; padding: 0; margin: 0;">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required placeholder="El teu nom">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="El teu email">
+
+            <label for="contrasenya">Contrasenya</label>
+            <input type="password" id="contrasenya" name="contrasenya" required placeholder="Crea una contrasenya">
+
+            <label for="confirmar_contrasenya">Confirmar Contrasenya</label>
+            <input type="password" id="confirmar_contrasenya" name="confirmar_contrasenya" required
+                placeholder="Repeteix la contrasenya">
+
+            <button type="submit" style="width: 100%;">Registrar-se</button>
+        </form>
+
+        <p>Ja tens compte? <a href="login.php">Inicia sessió</a></p>
+    </div>
+
+</body>
+
+</html>

@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS biblioteca_bd;
 CREATE DATABASE biblioteca_bd;
 USE biblioteca_bd;
 
---Usuaris
+-- Usuaris
 CREATE TABLE usuaris (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
@@ -12,14 +12,14 @@ CREATE TABLE usuaris (
     rol ENUM('soci', 'bibliotecari') NOT NULL
 );
 
---Autors
+-- Autors
 CREATE TABLE autors (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     biografia TEXT
 );
 
---Llibres
+-- Llibres
 CREATE TABLE llibres (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titol VARCHAR(200) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE llibres (
     FOREIGN KEY (autor_id) REFERENCES autors(id) ON DELETE CASCADE
 );
 
---Prestecs
+-- Prestecs
 CREATE TABLE prestecs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuari_id INT NOT NULL,
