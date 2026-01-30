@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuari_id'])) {
 
 $es_bibliotecari = ($_SESSION['usuari_rol'] == 'bibliotecari');
 
-// Gestiona accions CRUD
+// CRUD
 if ($es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['accio'])) {
         $accio = $_POST['accio'];
@@ -45,13 +45,13 @@ if ($es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Mostra llista
+// Mostrar llista
 $query = "SELECT * FROM autors";
 $result = mysqli_query($conn, $query);
 
 echo "<h2>Autors</h2>";
 if ($es_bibliotecari) {
-    // Formulari per crear
+    // Formulari
     echo "<h3>Afegir Autor</h3>";
     echo "<form method='POST'>
         <input type='hidden' name='accio' value='crear'>

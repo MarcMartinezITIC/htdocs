@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuari_id'])) {
 
 $es_bibliotecari = ($_SESSION['usuari_rol'] == 'bibliotecari');
 
-// Gestiona accions CRUD
+// Gestionar CRUD
 if ($es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['accio'])) {
         $accio = $_POST['accio'];
@@ -39,7 +39,7 @@ if ($es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST') {
             mysqli_query($conn, $query);
         } elseif ($accio == 'eliminar') {
             $id = (int) $_POST['id'];
-            // Comprova si hi ha prestecs actius
+            // Comprovar els prestecs
             $query = "SELECT * FROM prestecs WHERE llibre_id=$id AND estat='actiu'";
             if (mysqli_num_rows(mysqli_query($conn, $query)) > 0) {
                 header("Location: error.php?msg=No es pot eliminar un llibre prestat");
@@ -51,7 +51,7 @@ if ($es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Cerca i Ordenació
+// Cercar i ordre
 $cerca = isset($_GET['cerca']) ? mysqli_real_escape_string($conn, $_GET['cerca']) : '';
 $ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'titol';  // titol o data_publicacio
 $ordre_sql = ($ordre == 'data_publicacio') ? 'data_publicacio DESC' : 'titol ASC';
@@ -60,10 +60,10 @@ $on = $cerca ? "WHERE titol LIKE '%$cerca%' OR autors.nom LIKE '%$cerca%'" : '';
 $query = "SELECT llibres.*, autors.nom AS nom_autor FROM llibres JOIN autors ON llibres.autor_id = autors.id $on ORDER BY $ordre_sql";
 $result = mysqli_query($conn, $query);
 
-// Mostra llista
+// Mostrar llista llibres
 echo "<h2>Llibres</h2>";
 if ($es_bibliotecari) {
-    // Formulari per crear
+    // Formulari per crear llibres
     echo "<h3>Afegir Llibre</h3>";
     echo "<form method='POST'>
         <input type='hidden' name='accio' value='crear'>

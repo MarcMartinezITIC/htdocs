@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS biblioteca_bd;
 CREATE DATABASE biblioteca_bd;
 USE biblioteca_bd;
 
--- Taula: usuaris
+--Usuaris
 CREATE TABLE usuaris (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
@@ -12,14 +12,14 @@ CREATE TABLE usuaris (
     rol ENUM('soci', 'bibliotecari') NOT NULL
 );
 
--- Taula: autors
+--Autors
 CREATE TABLE autors (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     biografia TEXT
 );
 
--- Taula: llibres
+--Llibres
 CREATE TABLE llibres (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titol VARCHAR(200) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE llibres (
     FOREIGN KEY (autor_id) REFERENCES autors(id) ON DELETE CASCADE
 );
 
--- Taula: prestecs
+--Prestecs
 CREATE TABLE prestecs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuari_id INT NOT NULL,
@@ -43,9 +43,9 @@ CREATE TABLE prestecs (
     FOREIGN KEY (llibre_id) REFERENCES llibres(id) ON DELETE CASCADE
 );
 
--- Dades d'exemple (més de 10 registres)
+-- Inserts
 INSERT INTO usuaris (nom, email, contrasenya, rol) VALUES 
-('Soci de Prova', 'soci@exemple.com', '$2y$10$exemplehashaqui', 'soci'),  -- hashed 'contrasenya123'
+('Soci de Prova', 'soci@exemple.com', '$2y$10$exemplehashaqui', 'soci'),
 ('Bibliotecari de Prova', 'bibliotecari@exemple.com', '$2y$10$exemplehashaqui', 'bibliotecari');
 
 INSERT INTO autors (nom, biografia) VALUES 

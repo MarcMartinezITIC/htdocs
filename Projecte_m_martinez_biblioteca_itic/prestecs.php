@@ -9,10 +9,10 @@ if (!isset($_SESSION['usuari_id'])) {
 $es_bibliotecari = ($_SESSION['usuari_rol'] == 'bibliotecari');
 $usuari_id = $_SESSION['usuari_id'];
 
-// Gestiona creació de prestec (per socis)
+// Gestiona creació de prestecs soci
 if (!$es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accio']) && $_POST['accio'] == 'prestar') {
     $llibre_id = (int) $_POST['llibre_id'];
-    // Comprova si disponible
+    // Comprova disponibilitat
     $query = "SELECT * FROM llibres WHERE id=$llibre_id AND estat='disponible'";
     if (mysqli_num_rows(mysqli_query($conn, $query)) == 0) {
         header("Location: error.php?msg=Llibre no disponible");
@@ -24,7 +24,7 @@ if (!$es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['a
     mysqli_query($conn, $query);
 }
 
-// Gestiona retorn (per bibliotecaris)
+// Gestiona el retorn
 if ($es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accio']) && $_POST['accio'] == 'retornar') {
     $id = (int) $_POST['id'];
     $llibre_id = (int) $_POST['llibre_id'];
@@ -43,7 +43,7 @@ $result = mysqli_query($conn, $query);
 
 echo "<h2>Prestecs</h2>";
 if (!$es_bibliotecari) {
-    // Formulari per prestar (llista de llibres disponibles)
+    // Formulari per prestar amb la llista de llibres
     echo "<h3>Prestar un Llibre</h3>";
     $query_llibres = "SELECT id, titol FROM llibres WHERE estat='disponible'";
     $result_llibres = mysqli_query($conn, $query_llibres);
