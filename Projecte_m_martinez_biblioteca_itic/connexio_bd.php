@@ -2,7 +2,7 @@
 $host = 'localhost';
 $bd = 'biblioteca_bd';
 $usuari = 'root';
-$contrasenya = '';  // Canvia si cal
+$contrasenya = '';
 
 $conn = mysqli_connect($host, $usuari, $contrasenya, $bd);
 if (!$conn) {
