@@ -45,8 +45,8 @@ CREATE TABLE prestecs (
 
 -- Dades d'exemple (més de 10 registres)
 INSERT INTO usuaris (nom, email, contrasenya, rol) VALUES 
-('Soci de Prova', 'soci@exemple.com', '$2y$10$exemplehashaqui', 'soci'),  -- hashed 'contrasenya123'
-('Bibliotecari de Prova', 'bibliotecari@exemple.com', '$2y$10$exemplehashaqui', 'bibliotecari');
+('Soci de Prova', 'soci@exemple.com', 'contrasenya123', 'soci'),
+('Bibliotecari de Prova', 'bibliotecari@exemple.com', 'contrasenya123', 'bibliotecari');
 
 INSERT INTO autors (nom, biografia) VALUES 
 ('Autor Un', 'Biografia de l\'autor un.'),
