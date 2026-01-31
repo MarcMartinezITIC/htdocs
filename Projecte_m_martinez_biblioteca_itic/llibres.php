@@ -75,8 +75,16 @@ if ($es_bibliotecari) {
         <button>Afegir</button>
     </form>";
 }
-echo "<form method='GET'>Cerca: <input name='cerca'><button>Cercar</button></form>";
-echo "<a href='?ordre=titol'>Ordenar per Títol</a> | <a href='?ordre=data_publicacio'>Ordenar per Data</a>";
+echo "<form method='GET'>
+    <label for='cerca'>Cerca per llibre o autor:</label>
+    <input name='cerca' id='cerca' placeholder='Títol o Autor...'>
+    <button>Cercar</button>
+</form>";
+echo "<div class='sort-container'>
+    <span class='sort-label'>Ordenar:</span>
+    <a href='?ordre=titol' class='btn-sort'>Títol</a>
+    <a href='?ordre=data_publicacio' class='btn-sort'>Data</a>
+</div>";
 echo "<table border='1'><tr><th>ID</th><th>Títol</th><th>Autor</th><th>Accions</th></tr>";
 while ($fila = mysqli_fetch_assoc($result)) {
     echo "<tr><td>{$fila['id']}</td><td>{$fila['titol']}</td><td>{$fila['nom_autor']}</td>";

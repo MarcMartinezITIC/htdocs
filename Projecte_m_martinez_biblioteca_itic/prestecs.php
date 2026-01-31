@@ -44,7 +44,7 @@ $result = mysqli_query($conn, $query);
 echo "<h2>Prestecs</h2>";
 if (!$es_bibliotecari) {
     // Formulari per prestar amb la llista de llibres
-    echo "<h3>Prestar un Llibre</h3>";
+    echo "<h3>Escollir un Llibre</h3>";
     $query_llibres = "SELECT id, titol FROM llibres WHERE estat='disponible'";
     $result_llibres = mysqli_query($conn, $query_llibres);
     echo "<form method='POST'>
@@ -54,12 +54,22 @@ if (!$es_bibliotecari) {
         echo "<option value='{$llibre['id']}'>{$llibre['titol']}</option>";
     }
     echo "</select><br>
-        <button>Prestar</button>
+        <button>Escollir</button>
     </form>";
 }
-echo "<table border='1'><tr><th>ID</th><th>Usuari</th><th>Llibre</th><th>Data Prestec</th><th>Estat</th><th>Accions</th></tr>";
+echo "<table border='1'><tr><th>ID</th><th>Usuari</th><th>Llibre</th><th>Data</th><th>Hora</th><th>Estat</th><th>Accions</th></tr>";
 while ($fila = mysqli_fetch_assoc($result)) {
-    echo "<tr><td>{$fila['id']}</td><td>{$fila['nom_usuari']}</td><td>{$fila['titol_llibre']}</td><td>{$fila['data_prestec']}</td><td>{$fila['estat']}</td>";
+    $data_formatada = date('d/m/Y', strtotime($fila['data_prestec']));
+    $hora_formatada = date('H:i', strtotime($fila['data_prestec']));
+
+    echo "<tr>
+        <td>{$fila['id']}</td>
+        <td>{$fila['nom_usuari']}</td>
+        <td>{$fila['titol_llibre']}</td>
+        <td>{$data_formatada}</td>
+        <td>{$hora_formatada}</td>
+        <td><span class='estat-{$fila['estat']}'>{$fila['estat']}</span></td>"; // Added class for potential CSS styling
+
     if ($es_bibliotecari && $fila['estat'] == 'actiu') {
         echo "<td>
             <form method='POST'>

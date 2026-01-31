@@ -15,7 +15,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = mysqli_query($conn, $query);
     $usuari = mysqli_fetch_assoc($result);
 
-    if ($usuari && password_verify($contrasenya, $usuari['contrasenya'])) {
+    $login_successful = false;
+
+    if ($usuari) {
+        if (password_verify($contrasenya, $usuari['contrasenya'])) {
+            // Contrasenya correcta i hasheada
+            $login_successful = true;
+        } elseif ($contrasenya === $usuari['contrasenya']) {
+            // Contrasenya correcta però en text pla s'actualitza el hash
+            $nou_hash = password_hash($contrasenya, PASSWORD_DEFAULT);
+            $update_query = "UPDATE usuaris SET contrasenya='$nou_hash' WHERE id=" . $usuari['id'];
+            mysqli_query($conn, $update_query);
+            $login_successful = true;
+        }
+    }
+
+    if ($login_successful) {
         $_SESSION['usuari_id'] = $usuari['id'];
         $_SESSION['usuari_nom'] = $usuari['nom'];
         $_SESSION['usuari_rol'] = $usuari['rol'];

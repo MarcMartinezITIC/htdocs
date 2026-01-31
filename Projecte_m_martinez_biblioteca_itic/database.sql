@@ -28,7 +28,7 @@ CREATE TABLE llibres (
     data_publicacio DATE,
     estat ENUM('disponible', 'prestat') DEFAULT 'disponible',
     preu DECIMAL(5,2),
-    FOREIGN KEY (autor_id) REFERENCES autors(id) ON DELETE CASCADE
+    FOREIGN KEY (autor_id) REFERENCES autors(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Prestecs
@@ -49,17 +49,17 @@ INSERT INTO usuaris (nom, email, contrasenya, rol) VALUES
 ('Bibliotecari de Prova', 'bibliotecari@exemple.com', '$2y$10$exemplehashaqui', 'bibliotecari');
 
 INSERT INTO autors (nom, biografia) VALUES 
-('Autor Un', 'Biografia de l\'autor un.'),
-('Autor Dos', 'Biografia de l\'autor dos.'),
-('Autor Tres', 'Biografia de l\'autor tres.');
+('J.K. Rowling', 'Autora britànica, creadora de la saga Harry Potter.'),
+('George R.R. Martin', 'Escriptor estatunidenc de fantasia, terror i ciència-ficció.'),
+('Brandon Sanderson', 'Escriptor estatunidenc de literatura fantàstica i ciència-ficció.');
 
 INSERT INTO llibres (titol, autor_id, descripcio, data_publicacio, preu) VALUES 
-('Llibre 1', 1, 'Descripció del llibre 1.', '2020-01-01', 10.99),
-('Llibre 2', 1, 'Descripció del llibre 2.', '2021-02-02', 12.50),
-('Llibre 3', 2, 'Descripció del llibre 3.', '2019-03-03', 15.00),
-('Llibre 4', 3, 'Descripció del llibre 4.', '2022-04-04', 9.99),
-('Llibre 5', 3, 'Descripció del llibre 5.', '2018-05-05', 11.00);
+('Harry Potter i la pedra filosofal', 1, 'El primer llibre de la saga Harry Potter.', '1997-06-26', 20.00),
+('Harry Potter i la cambra secreta', 1, 'El segon llibre de la saga Harry Potter.', '1998-07-02', 22.50),
+('Joc de Trons', 2, 'El primer llibre de Cançó de gel i de foc.', '1996-08-06', 25.00),
+('Xoc de Reis', 2, 'El segon llibre de Cançó de gel i de foc.', '1998-11-16', 25.00),
+('L\'Imperi Final', 3, 'El primer llibre de la saga Nacidos de la Bruma.', '2006-07-17', 18.90);
 
 INSERT INTO prestecs (usuari_id, llibre_id, data_retorn) VALUES 
 (1, 1, '2026-02-15'),
-(1, 2, NULL);
+(1, 3, NULL);

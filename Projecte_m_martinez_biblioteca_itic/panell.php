@@ -8,9 +8,9 @@ if (!isset($_SESSION['usuari_id'])) {
 
 echo "<h2>Panell</h2>";
 if ($_SESSION['usuari_rol'] == 'bibliotecari') {
-    echo "<p>Panell del bibliotecari: Gestiona llibres i autors.</p>";
+    echo "<p class='panel-welcome'>Panell del bibliotecari: Gestiona llibres i autors.</p>";
 } else {
-    echo "<p>Panell del soci: Presta llibres i veu prestecs.</p>";
+    echo "<p class='panel-welcome'>Panell del soci: Presta llibres i veu prestecs.</p>";
 }
 ?>
 </body>
