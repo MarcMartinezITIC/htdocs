@@ -44,6 +44,7 @@ CREATE TABLE prestecs (
 );
 
 -- Inserts
+--Inicia sesio amb aquestes dades o  registra't amb el teu correu i una contrasenya
 INSERT INTO usuaris (nom, email, contrasenya, rol) VALUES 
 ('Soci de Prova', 'soci@exemple.com', '$2y$10$exemplehashaqui', 'soci'),
 ('Bibliotecari de Prova', 'bibliotecari@exemple.com', '$2y$10$exemplehashaqui', 'bibliotecari');

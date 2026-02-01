@@ -58,18 +58,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="email" id="email" name="email" required placeholder="El teu email">
 
             <label for="contrasenya">Contrasenya</label>
-            <input type="password" id="contrasenya" name="contrasenya" required placeholder="Crea una contrasenya">
+            <div class="password-wrapper">
+                <input type="password" id="contrasenya" name="contrasenya" required placeholder="Crea una contrasenya">
+                <button type="button" class="password-toggle" onclick="togglePassword('contrasenya')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </button>
+            </div>
 
             <label for="confirmar_contrasenya">Confirmar Contrasenya</label>
-            <input type="password" id="confirmar_contrasenya" name="confirmar_contrasenya" required
-                placeholder="Repeteix la contrasenya">
+            <div class="password-wrapper">
+                <input type="password" id="confirmar_contrasenya" name="confirmar_contrasenya" required
+                    placeholder="Repeteix la contrasenya">
+                <button type="button" class="password-toggle" onclick="togglePassword('confirmar_contrasenya')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </button>
+            </div>
 
-            <button type="submit" style="width: 100%;">Registrar-se</button>
+            <button type="submit" style="width: 100%; margin-top: 10px;">Registrar-se</button>
         </form>
 
-        <p>Ja tens compte? <a href="login.php">Inicia sessió</a></p>
+        <div class="auth-switch">
+            <p>¿Ja tens compte?</p>
+            <a href="login.php">Inicia sessió</a>
+        </div>
     </div>
 
+    <script>
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>
