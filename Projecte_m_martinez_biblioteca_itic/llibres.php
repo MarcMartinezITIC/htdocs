@@ -85,10 +85,13 @@ echo "<div class='sort-container'>
     <a href='?ordre=titol' class='btn-sort'>Títol</a>
     <a href='?ordre=data_publicacio' class='btn-sort'>Data</a>
 </div>";
-echo "<table border='1'><tr><th>ID</th><th>Títol</th><th>Autor</th><th>Accions</th></tr>";
+echo "<table border='1'><tr><th>ID</th><th>Títol</th><th>Autor</th><th>Data</th><th>Accions</th></tr>";
 while ($fila = mysqli_fetch_assoc($result)) {
-    echo "<tr><td>{$fila['id']}</td><td>{$fila['titol']}</td><td>{$fila['nom_autor']}</td>";
+    $data_publicacio = date('d/m/Y', strtotime($fila['data_publicacio']));
+    echo "<tr><td>{$fila['id']}</td><td>{$fila['titol']}</td><td>{$fila['nom_autor']}</td><td>{$data_publicacio}</td>";
     if ($es_bibliotecari) {
+        $titol_safe = htmlspecialchars($fila['titol'], ENT_QUOTES);
+        $desc_safe = htmlspecialchars($fila['descripcio'], ENT_QUOTES);
         echo "<td>
             <form method='POST' style='display:inline;'>
                 <input type='hidden' name='accio' value='eliminar'>
@@ -99,9 +102,9 @@ while ($fila = mysqli_fetch_assoc($result)) {
             <form method='POST' style='display:inline;'>
                 <input type='hidden' name='accio' value='actualitzar'>
                 <input type='hidden' name='id' value='{$fila['id']}'>
-                Títol: <input name='titol' value='{$fila['titol']}'><br>
+                Títol: <input name='titol' value='{$titol_safe}'><br>
                 Autor ID: <input name='autor_id' value='{$fila['autor_id']}'><br>
-                Descripció: <textarea name='descripcio'>{$fila['descripcio']}</textarea><br>
+                Descripció: <textarea name='descripcio'>{$desc_safe}</textarea><br>
                 Data: <input name='data_publicacio' value='{$fila['data_publicacio']}' type='date'><br>
                 Preu: <input name='preu' value='{$fila['preu']}'><br>
                 <button>Actualitzar</button>
