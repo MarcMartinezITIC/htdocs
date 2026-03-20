@@ -22,6 +22,11 @@ if ($es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST') {
                 header("Location: error.php?msg=Camps buits");
                 exit();
             }
+            $valid_autor = mysqli_query($conn, "SELECT id FROM autors WHERE id=$autor_id LIMIT 1");
+            if (mysqli_num_rows($valid_autor) == 0) {
+                header("Location: error.php?msg=Autor no existent");
+                exit();
+            }
             $query = "INSERT INTO llibres (titol, autor_id, descripcio, data_publicacio, preu) VALUES ('$titol', $autor_id, '$descripcio', '$data_publicacio', $preu)";
             mysqli_query($conn, $query);
         } elseif ($accio == 'actualitzar') {
@@ -33,6 +38,11 @@ if ($es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST') {
             $preu = (float) $_POST['preu'];
             if (empty($titol) || empty($autor_id)) {
                 header("Location: error.php?msg=Camps buits");
+                exit();
+            }
+            $valid_autor = mysqli_query($conn, "SELECT id FROM autors WHERE id=$autor_id LIMIT 1");
+            if (mysqli_num_rows($valid_autor) == 0) {
+                header("Location: error.php?msg=Autor no existent");
                 exit();
             }
             $query = "UPDATE llibres SET titol='$titol', autor_id=$autor_id, descripcio='$descripcio', data_publicacio='$data_publicacio', preu=$preu WHERE id=$id";
