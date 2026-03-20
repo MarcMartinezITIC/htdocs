@@ -58,7 +58,7 @@ if ($es_bibliotecari && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $query = "UPDATE autors SET id=$new_id, nom='$nom', biografia='$biografia' WHERE id=$old_id";
             if (!mysqli_query($conn, $query)) {
-                header("Location: error.php?msg=Error al actualitzar ID (Clau Prestat?)");
+                header("Location: error.php?msg=Error al actualitzar ID");
                 exit();
             }
 
