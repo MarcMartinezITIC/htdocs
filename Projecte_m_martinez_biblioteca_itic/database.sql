@@ -28,7 +28,7 @@ CREATE TABLE llibres (
     data_publicacio DATE,
     estat ENUM('disponible', 'prestat') DEFAULT 'disponible',
     preu DECIMAL(5,2),
-    FOREIGN KEY (autor_id) REFERENCES autors(id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (autor_id) REFERENCES autors(id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- Prestecs
